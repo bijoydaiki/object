@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/Users/bijoy/.pub-cache/hosted/pub.dev/tflite_flutter-0.11.0/android"
+    name=":tflite_flutter"
+    type="LIBRARY"
+    maven="org.tensorflow.tflite_flutter:tflite_flutter:"
+    agpVersion="8.2.1"
+    buildFolder="/Users/bijoy/AndroidStudioProjects/object/build/tflite_flutter"
+    bootClassPath="/Users/bijoy/Library/Android/sdk/platforms/android-31/android.jar:/Users/bijoy/Library/Android/sdk/build-tools/34.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-31"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>
