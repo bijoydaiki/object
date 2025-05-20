@@ -43,6 +43,9 @@ dependencies:
   image: ^4.0.17
   fluttertoast:
   animated_splash_screen:
+  provider:
+  shared_preferences:
+  http:
 
 dev_dependencies:
   flutter_test:

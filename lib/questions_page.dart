@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'object_detection.dart';
 
-
 class QuestionsPage extends StatefulWidget {
   @override
   _QuestionsPageState createState() => _QuestionsPageState();
@@ -61,12 +60,16 @@ class _QuestionsPageState extends State<QuestionsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Get device size to make responsive layout
+    final Size screenSize = MediaQuery.of(context).size;
+    final bool isTabletOrDesktop = screenSize.width > 600;
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(
           "Breast Cancer Symptom Checker",
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Color(0xFF046027),
         elevation: 0,
@@ -80,77 +83,113 @@ class _QuestionsPageState extends State<QuestionsPage> {
             colors: [Color(0xFF046027), Colors.white],
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: questions.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      color: Colors.white,
-                      elevation: 2,
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(isTabletOrDesktop ? 20.0 : 10.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      // For tablet and desktop views, use a grid layout
+                      if (isTabletOrDesktop) {
+                        return GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: screenSize.width > 1200 ? 3 : 2,
+                            childAspectRatio: 3,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
+                          itemCount: questions.length,
+                          itemBuilder: (context, index) {
+                            return _buildQuestionCard(index);
+                          },
+                        );
+                      } else {
+                        // For mobile views, use a list layout
+                        return ListView.builder(
+                          itemCount: questions.length,
+                          itemBuilder: (context, index) {
+                            return _buildQuestionCard(index);
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: isTabletOrDesktop ? 30 : 20),
+                Container(
+                  width: isTabletOrDesktop ? screenSize.width * 0.4 : double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _submitAnswers,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF046027),
+                      padding: EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${index + 1}. ${questions[index]['question']}",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[800],
-                              ),
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildRadioOption(index, 1, "Yes", Colors.red),
-                                SizedBox(width: 30),
-                                _buildRadioOption(index, 0, "No", Colors.green),
-                              ],
-                            ),
-                          ],
-                        ),
+                      elevation: 5,
+                    ),
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(
+                        fontSize: isTabletOrDesktop ? 20 : 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
-                    );
-                  },
-                ),
-              ),
-           //   SizedBox(height: 20),
-              TextButton(
-                onPressed: _submitAnswers,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF046027),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  elevation: 5,
-                ),
-                child: Text(
-                  "Submit",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
+  Widget _buildQuestionCard(int index) {
+    final bool isTabletOrDesktop = MediaQuery.of(context).size.width > 600;
+
+    return Card(
+      color: Colors.white,
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(isTabletOrDesktop ? 20 : 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "${index + 1}. ${questions[index]['question']}",
+              style: TextStyle(
+                fontSize: isTabletOrDesktop ? 20 : 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey[800],
+              ),
+            ),
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildRadioOption(index, 1, "Yes", Colors.red),
+                SizedBox(width: isTabletOrDesktop ? 40 : 30),
+                _buildRadioOption(index, 0, "No", Colors.green),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildRadioOption(int index, int value, String label, Color color) {
+    final bool isTabletOrDesktop = MediaQuery.of(context).size.width > 600;
+
     return Row(
       children: [
         Radio(
@@ -166,7 +205,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
         Text(
           label,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: isTabletOrDesktop ? 18 : 16,
             color: Colors.grey[700],
             fontWeight: FontWeight.w500,
           ),
@@ -175,6 +214,3 @@ class _QuestionsPageState extends State<QuestionsPage> {
     );
   }
 }
-
-
-
