@@ -46,6 +46,7 @@ dependencies:
   provider:
   shared_preferences:
   http:
+  universal_html:
 
 dev_dependencies:
   flutter_test:

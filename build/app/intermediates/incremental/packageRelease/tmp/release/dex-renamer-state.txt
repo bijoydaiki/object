@@ -1,7 +1,0 @@
-#Sat May 17 19:51:55 PDT 2025
-base.0=/Users/bijoy/AndroidStudioProjects/object/build/app/intermediates/dex/release/mergeDexRelease/classes.dex
-base.1=/Users/bijoy/AndroidStudioProjects/object/build/app/intermediates/dex/release/mergeDexRelease/classes2.dex
-path.0=classes.dex
-path.1=classes2.dex
-renamed.0=classes.dex
-renamed.1=classes2.dex

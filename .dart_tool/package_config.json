@@ -62,6 +62,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "charcode",
+      "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/charcode-1.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "clock",
       "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
@@ -84,6 +90,12 @@
       "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/crypto-3.0.6",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "csslib",
+      "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/csslib-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "cupertino_icons",
@@ -168,6 +180,12 @@
       "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/fluttertoast-8.2.12",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "html",
+      "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/html-0.15.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
     },
     {
       "name": "http",
@@ -506,6 +524,18 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "universal_html",
+      "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/universal_html-2.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "universal_io",
+      "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/universal_io-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///Users/bijoy/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -542,7 +572,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2025-04-19T02:46:43.269692Z",
+  "generated": "2025-05-20T03:49:02.053538Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/bijoy/development/flutter",
